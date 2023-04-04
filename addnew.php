@@ -16,32 +16,29 @@ session_start();
         $row = mysqli_fetch_assoc($query);
         $e_id = $row["employee_id"];
         $start = $row["start_time"];
+        
        
         
         if($crt<$start){
             $ti_status = 'Early';
             $status = 'Present';
-            mysqli_query($connection, "INSERT INTO attendance_tbl (employee_id, date, time_in,ti_status, statuses) VALUES ('$e_id', '$crd', '$crt','$ti_status','$status')");
-            header('location:attendance.php');
+           
         
     }
         if($crt==$start){
             $ti_status = 'On-Time';
             $status = 'Present';
-            mysqli_query($connection, "INSERT INTO attendance_tbl (employee_id, date, time_in,ti_status, statuses) VALUES ('$e_id', '$crd', '$crt','$ti_status','$status')");
-            header('location:attendance.php');
+           
         
         }
         if($crt>$start){
-            $ti_status = 'Absent';
-            $status = 'Absent';
-            mysqli_query($connection, "INSERT INTO attendance_tbl (employee_id, date, time_in,ti_status, statuses) VALUES ('$e_id', '$crd', '$crt','$ti_status','$status')");
-            session_destroy();
-            header("Location: login.php");
-            exit();
+            $ti_status = 'Late';
+            $status = 'Present';
+            
     }
     }
-
+    mysqli_query($connection, "INSERT INTO attendance_tbl (employee_id, date, time_in,ti_status, statuses) VALUES ('$e_id', '$crd', '$crt','$ti_status','$status')");
+    header('location:attendance.php');
     // Insert attendance record with employee ID
    
 ?>

@@ -1,7 +1,6 @@
 <!-- Add New -->
 <?php
-$token = uniqid();
-$_SESSION['token'] = $token;
+
 date_default_timezone_set('Asia/Manila');
 $currentDate = date('Y-m-d'); // current date in YYYY-MM-DD format
 $current_time = time();
@@ -70,11 +69,9 @@ $current_time_formatted = date('H:i:s', $current_time);
 				
 				<div style="height:10px;"></div>
                     <div class="row">
-						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">ID:</label>
-						</div>
+						
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="id" readonly value="<?php echo $erow['attendance_id']; ?>">
+							<input type="hidden" class="form-control" name="id" readonly value="<?php echo $erow['attendance_id']; ?>">
 						</div>
 					</div>
 					<div style="height:10px;"></div>
