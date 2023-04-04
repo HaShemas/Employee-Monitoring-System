@@ -1,8 +1,5 @@
 <!-- ADD-->
-<?php
 
-
-?>
 <div class="modal fade" id="addnew2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -72,7 +69,7 @@
 							<label class="control-label" style="position:relative; top:7px;">Email:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="email" name="email"  value="">
+							<input type="email" class="form-control" id="email" name="email"  value="">
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -205,7 +202,7 @@
 							<label style="position:relative; top:7px;">Email:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" name="email" class="form-control" value="<?php echo $erow['email']; ?>">
+							<input type="email" name="email" class="form-control" value="<?php echo $erow['email']; ?>">
 						</div>
 					</div>
                     <div style="height:10px;"></div>
