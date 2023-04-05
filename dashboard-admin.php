@@ -56,6 +56,7 @@ if (isset($_POST['logout'])) {
     <br></br>HR ID: <?php echo $row['employee_id']?><br></br>
     <a href="profile-admin.php" class="button">PROFILE</a>
     <a href="employee-admin.php" class="button">EMPLOYEE LIST</a>
+    <a href="leave-admin.php" class="button">LEAVE MANAGEMENT</a>
     <input type="submit" name="logout" value="LOGOUT" class="button"></a>
    </form>
   </div>
