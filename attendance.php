@@ -116,7 +116,7 @@ if(isset($_SESSION['employee_id'])){
 
     <div id="sidebar" style="height: auto;">
       <img src="https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width="80" style="border-radius: 50%;">
-      <br></br>ID: <?php echo $employee_id; ?><br></br>
+      <br></br>EMPLOYEE ID: <?php echo $employee_id; ?><br></br>
       <a href="dashboard.php" class="button">HOME</a>
           </div>
     <div id="content1"></div>
