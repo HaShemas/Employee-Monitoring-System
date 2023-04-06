@@ -9,23 +9,27 @@ if(isset($_POST['submit'])){
 }
   function login($connection){
     $error="";
-    $employee_id=$_POST['employee_id'];
-      $password=$_POST['password'];
-      $sql = "SELECT * FROM employee_tbl WHERE employee_id =".$employee_id." AND password ='".$password."' ";
-      
-      $query = mysqli_query($connection, $sql);
-      if(mysqli_num_rows($query)){
-        $_SESSION['employee_id'] = $employee_id;
-        if($employee_id==11){
-          header("location: dashboard-admin.php");
-        }
-        else{
-          header("location: dashboard.php");
-        }
-        
-       
-        exit();
+    $employee_id = $_POST['ide'];
+    $password = $_POST['password'];
+    
+    $sql = "SELECT * FROM employee_tbl WHERE status = '1 ' AND employee_id =" . $employee_id . " AND password ='" . $password . "' ";
+    $query = mysqli_query($connection, $sql);
+    $rows1 = mysqli_num_rows($query);
+    
+    $sql2 = "SELECT * FROM hr_tbl WHERE  hr_id =" . $employee_id . " AND password ='" . $password . "' ";
+    $query2 = mysqli_query($connection, $sql2);
+    $rows2 = mysqli_num_rows($query2);
+    
+    if($rows1 > 0 || $rows2 > 0){
+      $_SESSION['employee_id'] = $employee_id;
+      $_SESSION['hr_id'] = $employee_id;
+      if($rows2 > 0){
+        header("location: dashboard-admin.php");
+      } else {
+        header("location: dashboard.php");
       }
+      exit();
+    }
 
     }
 ?>
@@ -49,7 +53,7 @@ if(isset($_POST['submit'])){
       <h1>Login</h1>
       <form method="post">
         <label>ID</label>
-        <input type="text"  name="employee_id" placeholder="ID" class="form-control" required/>
+        <input type="text"  name="ide" placeholder="ID" class="form-control" required/>
         <label>Password</label>
         <input type="password" id="password" name="password" placeholder="Password" class="form-control" required/>
         <div class="btn btn-block btn-primary">

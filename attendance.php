@@ -53,7 +53,7 @@ if(isset($_SESSION['employee_id'])){
       <br>
       <br>
       <form method="POST" action="" class="form">
-      <span ><a href="#addnew" name = "save" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-plus" style = "margin-left: 1px;"></span> Time In</a></span>
+      <span ><a href="#addnew" name = "save" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-time" style = "margin-left: 1px;"></span> Time In</a></span>
       <br>
       <br>
       
@@ -97,7 +97,7 @@ if(isset($_SESSION['employee_id'])){
                   echo '<button type="button" class="btn btn-default" disabled>OUT</button>';
                 }
                 else{?>
-                  href="#edit<?php echo $row["attendance_id"]; ?>" data-toggle="modal" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Time Out</a>
+                  href="#edit<?php echo $row["attendance_id"]; ?>" data-toggle="modal" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Time Out</a>
                   <?php include('add_modal.php'); ?>
               <?php
                 }

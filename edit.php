@@ -11,9 +11,9 @@
 	$start_time = $_POST['start_time'];
     $end_time = $_POST['end_time'];
     $day_week = $_POST['day_week'];
+	$hrid = $_POST['hr'];
 	
-	
-	mysqli_query($connection,"UPDATE employee_tbl SET password='$password', fname='$firstname',mname='$middlename', lname='$lastname', phone_number='$pn', email='$address' where employee_id='$id'");
+	mysqli_query($connection,"UPDATE employee_tbl SET password='$password', fname='$firstname',mname='$middlename', lname='$lastname', phone_number='$pn', email='$address',hr_id='$hrid' where employee_id='$id'");
 	mysqli_query($connection,"UPDATE time_tbl SET start_time='$start_time', end_time='$end_time' WHERE employee_id='$id'");
 
 	header('location:employee-admin.php');

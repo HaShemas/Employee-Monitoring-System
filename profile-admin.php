@@ -7,7 +7,7 @@ require_once("database.php");
      
 
         // query database for employee information based on employee ID
-        $sql = "SELECT * FROM employee_tbl WHERE employee_id = '$employee_id'";
+        $sql = "SELECT * FROM hr_tbl WHERE hr_id = '$employee_id'";
         $query = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($query);
 
@@ -18,17 +18,7 @@ require_once("database.php");
     }
     
 ?>
-<?php
 
-// If the user is not logged in, redirect to the login page
-
-// If the user clicked the logout button, destroy the session and redirect to the login page
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header("Location: login.php");
-  exit();
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -91,9 +81,9 @@ if (isset($_POST['logout'])) {
   <div id="sidebar">
   <form method="post">
     <img src = "https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width= "80" border-radius: 50%;>
-    <br></br>EMPLOYEE ID: <?php echo $row['employee_id'] ?><br></br>
-    <a href="dashboard.php" class="button">HOME</a>
-    <input type="submit" name="logout" value="LOGOUT" class="button"></a>
+    <br></br> HR ID: <?php echo $row['hr_id'] ?><br></br>
+    <a href="dashboard-admin.php" class="button">HOME</a>
+    
     </form>
   </div>
   <div id="content1">

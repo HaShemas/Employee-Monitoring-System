@@ -2,12 +2,13 @@
 session_start();
 require_once("database.php");
 
-if(isset($_SESSION['employee_id'])){
-    $employee_id = $_SESSION['employee_id'];
+if(isset($_SESSION['hr_id'])){
+    $hr_id = $_SESSION['hr_id'];
 
     $sql = "SELECT * FROM employee_tbl INNER JOIN leave_tbl ON
-    employee_tbl.employee_id=leave_tbl.employee_id WHERE employee_tbl.employee_id=leave_tbl.employee_id
-     AND employee_tbl.employee_id !='11' AND leave_tbl.le_status = 'pending'";
+    employee_tbl.employee_id=leave_tbl.employee_id INNER JOIN hr_tbl ON leave_tbl.hr_id=hr_tbl.hr_id
+     WHERE employee_tbl.employee_id=leave_tbl.employee_id AND leave_tbl.hr_id=$hr_id
+      AND leave_tbl.le_status = 'pending'";
   $query = mysqli_query($connection, $sql);
   $row = mysqli_fetch_assoc($query);
   
@@ -74,7 +75,7 @@ https://codepen.io/angeladelise/pen/YzXLdyq
         <span class="glyphicon glyphicon-ok"></span> Approve
       </button>
       <button type="reset" class="btn btn-danger" onclick="window.location.href='disapprove.php?employee_id=<?php echo $row['employee_id']; ?>'">
-        <span class="glyphicon glyphicon-trash"></span> Disapprove
+        <span class="glyphicon glyphicon-remove"></span> Disapprove
       </button>
       
       <?php include('view.php'); ?>
@@ -87,9 +88,9 @@ https://codepen.io/angeladelise/pen/YzXLdyq
   </main>
   <div id="sidebar">
     <img src = "https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width= "80" border-radius: 50%;>
-    <br></br>HR ID: <?php echo $employee_id ?><br></br>
+    <br></br>HR ID: <?php echo $hr_id ?><br></br>
     <a href="dashboard-admin.php" class="button">HOME</a>
-    <a href="e-list.php" class="button">EMPLOYEES</a>
+    <a href="e-list.php" class="button">EMPLOYEE'S LEAVE HISTORY</a>
     
   
   </div>

@@ -1,5 +1,14 @@
 <!-- ADD-->
+<?php
+if(isset($_SESSION['employee_id'])){
+	$hr_id = $_SESSION['hr_id'];
+ 
 
+$sql = "SELECT * FROM hr_tbl WHERE hr_id = '$hr_id'";
+$query = mysqli_query($connection, $sql);
+$row = mysqli_fetch_assoc($query);
+}
+?>
 <div class="modal fade" id="addnew2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,6 +79,7 @@
 						</div>
 						<div class="col-lg-10">
 							<input type="email" class="form-control" id="email" name="email"  value="">
+							<input type="hidden" class="form-control" id="hr" name="hr"  value="<?php echo $row['hr_id']; ?>">
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -111,19 +121,24 @@
                 <center><h4 class="modal-title" id="myModalLabel">Delete</h4></center>
             </div>
             <div class="modal-body">
+			
             <?php
                 $del=mysqli_query($connection,"SELECT * FROM employee_tbl WHERE employee_id='".$row2['employee_id']."'");
                 $drow=mysqli_fetch_array($del);
             ?>
             <div class="container-fluid">
+			
                 <h5><center>Are you sure to delete <strong><?php echo ucwords($drow['fname'].' '.$drow['lname']); ?></strong> from the list? This method cannot be undone.</center></h5> 
             </div> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                 <a href="delete.php?id=<?php echo $row2['employee_id']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				
             </div>
+			</form>
         </div>
+
     </div>
 </div>
 <!-- /.modal -->
@@ -176,6 +191,7 @@
 						</div>
 						<div class="col-lg-10">
 							<input type="text" name="mname" class="form-control" value="<?php echo $erow['mname']; ?>">
+							<input type="text" class="form-control" id="hr" name="hr"  value="<?php echo $row['hr_id']; ?>">
 						</div>
 					</div>
 					<div style="height:10px;"></div>

@@ -8,7 +8,7 @@ require_once("database.php");
      
 
         // query database for employee information based on employee ID
-        $sql = "SELECT * FROM employee_tbl WHERE employee_id = '$employee_id'";
+        $sql = "SELECT * FROM hr_tbl WHERE hr_id = '$employee_id'";
         $query = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($query);
 
@@ -53,10 +53,12 @@ if (isset($_POST['logout'])) {
   <div id="sidebar">
   <form method="post">
     <img src = "https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width= "80" border-radius: 50%;>
-    <br></br>HR ID: <?php echo $row['employee_id']?><br></br>
+    <br></br>HR ID: <?php echo $row['hr_id']?><br></br>
     <a href="profile-admin.php" class="button">PROFILE</a>
-    <a href="employee-admin.php" class="button">EMPLOYEE LIST</a>
+    <a href="employee-admin.php" class="button">EMPLOYEE MANAGEMENT</a>
+    <a href="attendance-admin.php" class="button">EMPLOYEE ATTENDANCE</a>
     <a href="leave-admin.php" class="button">LEAVE MANAGEMENT</a>
+    <a href="payroll.php" class="button">PAYROLL </a>
     <input type="submit" name="logout" value="LOGOUT" class="button"></a>
    </form>
   </div>

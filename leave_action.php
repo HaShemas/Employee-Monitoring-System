@@ -6,6 +6,8 @@ session_start();
         $todate = $_POST["todate"];
         $reason = $_POST["reason"];
         $crdate = $_POST["crdate"];
+        $rox = "rox";
+        $jeb = "jeb";
         $lestatus = "pending";
         $sick_value = "sick"; 
         $inj = "injury";
@@ -21,7 +23,14 @@ if(isset($_SESSION['employee_id'])){
     $row = mysqli_fetch_assoc($query);
         $e_id = $row["employee_id"];
 
-
+        if ($_POST["hr"] == $rox) {
+            $hr = 22;
+            
+        }
+        if ($_POST["hr"] == $jeb) {
+            $hr = 11;
+            
+        }
     if ($_POST["type"] == $sick_value) {
         $sick_text = "Sick";
         
@@ -44,6 +53,6 @@ if(isset($_SESSION['employee_id'])){
     }
     }
 
-mysqli_query($connection, "INSERT INTO leave_tbl (leave_id, le_date, fr_date,to_date, le_type, reason, le_status,employee_id) VALUES ('null', '$crdate', '$frdate','$todate','$sick_text','$reason','$lestatus','$e_id')");
+mysqli_query($connection, "INSERT INTO leave_tbl (leave_id, le_date, fr_date,to_date, le_type, reason, le_status,employee_id,hr_id) VALUES ('null', '$crdate', '$frdate','$todate','$sick_text','$reason','$lestatus','$e_id','$hr')");
 header('location:leave_history.php');
 ?>

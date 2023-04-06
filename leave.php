@@ -20,9 +20,7 @@ $current_time_formatted = date('H:i:s', $current_time);
         $sql2 = "SELECT UPPER(fname) AS fname,UPPER(lname) AS lname,UCASE(SUBSTR(mname, 1, 1)) AS first_letter FROM employee_tbl WHERE employee_id = '11'";
         $query2 = mysqli_query($connection, $sql2);
         $row2 = mysqli_fetch_assoc($query2);
-        $fname2 = $row2["fname"];
-        $lname2 = $row2["lname"];
-        $mname2 = $row2["first_letter"];
+      
     } else {
         // employee ID not found in session variable, redirect to login page
         header("Location: login.php");
@@ -59,8 +57,15 @@ https://codepen.io/angeladelise/pen/YzXLdyq
   </div>
   <div class="w3-third">
   <label>Hr</label>
-    <input class="w3-input w3-border" type="text" name="hr" readonly value="<?php echo $lname2; ?>, <?php echo $fname2; ?> <?php echo $mname2; ?>.">
+  
+  <select id="hr" name="hr" style="width: 300px; height: 35px;">
+                        <option value="">HR</option>
+                        <option value="rox">FERNANDO, ROXANNE L.</option>
+                        <option value="jeb">JUMILLA, JEB C.</option>
+                        
+                        </select>
   </div>
+  
   <label>Date</label>
   <div class="w3-third">
     <input class="w3-input w3-border" type="date" name="crdate" readonly value="<?php echo $currentDate; ?>">

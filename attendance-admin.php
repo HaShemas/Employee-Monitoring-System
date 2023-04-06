@@ -11,7 +11,7 @@ require_once("database.php");
         $query = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($query);
 
-        $sql2="SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=time_tbl.employee_id AND status='1'";
+        $sql2="SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=time_tbl.employee_id AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
         $query2 = mysqli_query($connection, $sql2);
     // retrieve employee's time schedule
         $row2 = mysqli_fetch_assoc($query2);
@@ -55,15 +55,13 @@ if (isset($_POST['logout'])) {
     <nav></nav>
     <main style="width: 140%; height: auto;">
     
-  <br>
-  <br>
+  
   <br>
   EMPLOYEE MANAGEMENT
   <br>
   <br>
   <br>
   <form method="POST" action="" class="form">
-    <span><a href="#addnew2" name="save" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add New</a></span>
     <br>
     <br>
     <br>
@@ -83,7 +81,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     $search = $_POST['search'];
 
     // Perform the search
-    $sql = "SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=$search AND employee_tbl.status = '1'";
+    $sql = "SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=$search AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
     $result = mysqli_query($connection, $sql);
     $row3 = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
@@ -119,8 +117,9 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                     <td><?php echo $row3["start_time"];?></td>
                     <td><?php echo $row3["end_time"];?></td>
                     <td>
-                        <a href="#edit<?php echo $row3['employee_id']; ?>" data-toggle="modal" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a href="#del<?php echo $row3['employee_id']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
+                      <span class="glyphicon glyphicon-eye-open"></span> View
+                    </button>
                         <?php include('hr_action.php'); ?>
                     </td>
                 </tr>
@@ -138,7 +137,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
 else
 {
   // Display the table for all employees
-  $sql = "SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=time_tbl.employee_id AND status='1'";
+  $sql = "SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=time_tbl.employee_id AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
   $query = mysqli_query($connection, $sql);
 
 ?>
@@ -176,9 +175,10 @@ else
           <td><?php echo $row2["start_time"];?></td>
           <td><?php echo $row2["end_time"];?></td>
           <td>
-            <a href="#edit<?php echo $row2['employee_id']; ?>" data-toggle="modal" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-            <a href="#del<?php echo $row2['employee_id']; ?>" data-toggle="modal" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-            <?php include('hr_action.php'); ?>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
+          <span class="glyphicon glyphicon-eye-open"></span> View
+        </button>
+         <?php include('hr_action.php'); ?>
           </td>
         </tr>
       <?php } ?>
