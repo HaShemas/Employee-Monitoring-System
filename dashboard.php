@@ -59,7 +59,6 @@ if (isset($_POST['logout'])) {
     <a href="attendance.php" class="button">ATTENDANCE</a>
     <a href="leave.php" class="button">FILE LEAVE</d>
     <a href="payslip.php" class="button">PAYSLIP</a>
-    <a href="settings.php" class="button">SETTINGS</a>
     <input type="submit" name="logout" value="LOGOUT" class="button"></a>
     </form>
     
