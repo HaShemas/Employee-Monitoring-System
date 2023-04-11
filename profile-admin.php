@@ -2,12 +2,12 @@
 session_start();
 require_once("database.php");
 
-      if(isset($_SESSION['employee_id'])){
-        $employee_id = $_SESSION['employee_id'];
+      if(isset($_SESSION['hr_id'])){
+        $hr_id = $_SESSION['hr_id'];
      
 
         // query database for employee information based on employee ID
-        $sql = "SELECT * FROM hr_tbl WHERE hr_id = '$employee_id'";
+        $sql = "SELECT * FROM hr_tbl WHERE hr_id = '$hr_id'";
         $query = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($query);
 

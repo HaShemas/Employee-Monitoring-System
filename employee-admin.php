@@ -2,14 +2,11 @@
 session_start();
 require_once("database.php");
 
-      if(isset($_SESSION['employee_id'])){
-        $employee_id = $_SESSION['employee_id'];
+      if(isset($_SESSION['hr_id'])){
+        $hr_id = $_SESSION['hr_id'];
      
 
-        // query database for employee information based on employee ID
-        $sql = "SELECT * FROM employee_tbl WHERE employee_id = '$employee_id'";
-        $query = mysqli_query($connection, $sql);
-        $row = mysqli_fetch_assoc($query);
+    
 
         $sql2="SELECT * FROM employee_tbl INNER JOIN time_tbl ON employee_tbl.employee_id=time_tbl.employee_id WHERE employee_tbl.employee_id=time_tbl.employee_id AND status='1'";
         $query2 = mysqli_query($connection, $sql2);
@@ -194,7 +191,7 @@ else
 
     <div id="sidebar" style="height: auto;">
       <img src="https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width="80" style="border-radius: 50%;">
-      <br></br>HR ID: <?php echo $employee_id; ?><br></br>
+      <br></br>HR ID: <?php echo $hr_id; ?><br></br>
       <a href="dashboard-admin.php" class="button">HOME</a>
           </div>
     <div id="content1"></div>

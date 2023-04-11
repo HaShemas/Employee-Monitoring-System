@@ -9,23 +9,26 @@ if(isset($_POST['submit'])){
 }
   function login($connection){
     $error="";
-    $employee_id = $_POST['ide'];
+    $id = $_POST['ide'];
     $password = $_POST['password'];
     
-    $sql = "SELECT * FROM employee_tbl WHERE status = '1 ' AND employee_id =" . $employee_id . " AND password ='" . $password . "' ";
+    $sql = "SELECT * FROM employee_tbl WHERE status = '1 ' AND employee_id =" . $id . " AND password ='" . $password . "' ";
     $query = mysqli_query($connection, $sql);
     $rows1 = mysqli_num_rows($query);
     
-    $sql2 = "SELECT * FROM hr_tbl WHERE  hr_id =" . $employee_id . " AND password ='" . $password . "' ";
+    $sql2 = "SELECT * FROM hr_tbl WHERE  hr_id =" . $id . " AND password ='" . $password . "' ";
     $query2 = mysqli_query($connection, $sql2);
     $rows2 = mysqli_num_rows($query2);
     
     if($rows1 > 0 || $rows2 > 0){
-      $_SESSION['employee_id'] = $employee_id;
-      $_SESSION['hr_id'] = $employee_id;
       if($rows2 > 0){
+        // Set the hr_id in the session
+        $_SESSION['hr_id'] = $id;
         header("location: dashboard-admin.php");
       } else {
+        // Set the employee_id in the session
+        $employee = mysqli_fetch_assoc($query);
+        $_SESSION['employee_id'] = $employee['employee_id'];
         header("location: dashboard.php");
       }
       exit();

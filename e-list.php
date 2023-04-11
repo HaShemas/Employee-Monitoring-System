@@ -2,14 +2,12 @@
 session_start();
 require_once("database.php");
 
-      if(isset($_SESSION['employee_id'])){
-        $employee_id = $_SESSION['employee_id'];
+      if(isset($_SESSION['hr_id'])){
+        $hr_id = $_SESSION['hr_id'];
      
 
         // query database for employee information based on employee ID
-        $sql = "SELECT * FROM employee_tbl WHERE employee_id = '$employee_id'";
-        $query = mysqli_query($connection, $sql);
-        $row = mysqli_fetch_assoc($query);
+        
 
         $sql2="SELECT * FROM employee_tbl INNER JOIN leave_tbl ON employee_tbl.employee_id=leave_tbl.employee_id WHERE employee_tbl.employee_id=leave_tbl.employee_id AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
         $query2 = mysqli_query($connection, $sql2);
@@ -77,8 +75,8 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     $search = $_POST['search'];
 
     // Perform the search
-    $sql = "SELECT * FROM employee_tbl WHERE employee_tbl.employee_id=$search AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
-    $result = mysqli_query($connection, $sql);
+    $sql2 = "SELECT * FROM employee_tbl WHERE employee_tbl.employee_id=$search AND employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
+    $result = mysqli_query($connection, $sql2);
     $row3 = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
         // Display the search results in a table
@@ -128,8 +126,8 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
 else
 {
   // Display the table for all employees
-  $sql = "SELECT * FROM employee_tbl WHERE employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
-  $query = mysqli_query($connection, $sql);
+  $sql3 = "SELECT * FROM employee_tbl WHERE employee_tbl.employee_id !='11' AND employee_tbl.status = '1'";
+  $query3 = mysqli_query($connection, $sql3);
 
 ?>
 <div style="display: flex; justify-content: space-between; margin-left: 50px;">
@@ -150,8 +148,8 @@ else
       </tr>
     </thead>
     <tbody>
-      <?php mysqli_data_seek($query, 0); // reset query pointer ?>
-      <?php while ($row2 = mysqli_fetch_assoc($query)) { ?>
+      <?php mysqli_data_seek($query3, 0); // reset query pointer ?>
+      <?php while ($row2 = mysqli_fetch_assoc($query3)) { ?>
         <tr>
           <td><?php echo $row2["employee_id"]; ?></td>
           <td><?php echo $row2["fname"]; ?></td>
@@ -180,7 +178,7 @@ else
 
     <div id="sidebar" style="height: auto;">
       <img src="https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/graphicstock-sleepy-tired-business-woman-holding-cup-of-coffee-and-yawning-while-working-in-office-exhausted-business-woman-yawning-and-drinking-coffee-at-work-vector-flat-design-illustration-square-layout_SQeBTBdILb_thumb.jpg" alt="Image" height="80" width="80" style="border-radius: 50%;">
-      <br></br>HR ID: <?php echo $employee_id; ?><br></br>
+      <br></br>HR ID: <?php echo $hr_id; ?><br></br>
       <a href="dashboard-admin.php" class="button">HOME</a>
       <a href="leave-admin.php" class="button">BACK</a>
           </div>

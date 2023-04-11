@@ -25,7 +25,7 @@ require_once("database.php");
 
 // If the user clicked the logout button, destroy the session and redirect to the login page
 if (isset($_POST['logout'])) {
-  session_destroy();
+ 
   header("Location: login.php");
   exit();
 }
