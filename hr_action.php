@@ -1,6 +1,6 @@
 <!-- ADD-->
 <?php
-if(isset($_SESSION['employee_id'])){
+if(isset($_SESSION['hr_id'])){
 	$hr_id = $_SESSION['hr_id'];
  
 
