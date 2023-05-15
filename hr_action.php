@@ -1,6 +1,6 @@
 <!-- ADD-->
 <?php
-if(isset($_SESSION['employee_id'])){
+if(isset($_SESSION['hr_id'])){
 	$hr_id = $_SESSION['hr_id'];
  
 
@@ -14,7 +14,7 @@ $row = mysqli_fetch_assoc($query);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel">Add New</h4></center>
+                    <center><h4 class="modal-title" id="myModalLabel">Add New Employee</h4></center>
                 </div>
                 <div class="modal-body">
 				<div class="container-fluid">
@@ -24,7 +24,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Employee ID:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id = "employee_id"name="employee_id" >
+							<input type="text" class="form-control" id = "employee_id"name="employee_id" required>
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -33,7 +33,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Password:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id = "password"name="password" >
+							<input type="text" class="form-control" id = "password"name="password" required>
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -42,7 +42,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">First Name:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id = "fname"name="fname" >
+							<input type="text" class="form-control" id = "fname"name="fname" required>
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -51,7 +51,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Middle Name:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id = "mname"name="mname" >
+							<input type="text" class="form-control" id = "mname"name="mname" required>
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -60,7 +60,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Last Name:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="lname" name="lname"  >
+							<input type="text" class="form-control" id="lname" name="lname" required >
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -69,7 +69,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Phone Number:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id = "phone_number" name="phone_number"  value="">
+							<input type="text" class="form-control" id = "phone_number" name="phone_number" required value="">
 						</div>
 					</div>
                     <div style="height:10px;"></div>
@@ -78,7 +78,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Email:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="email" class="form-control" id="email" name="email"  value="">
+							<input type="email" class="form-control" id="email" name="email"  value=""required>
 							<input type="hidden" class="form-control" id="hr" name="hr"  value="<?php echo $row['hr_id']; ?>">
 						</div>
 					</div>
@@ -88,7 +88,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">Start Time:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="start_time"  >
+							<input type="text" class="form-control" name="start_time" placeholder="HH:MM:SS" required>
 						</div>
 					</div>
 					<div style="height:10px;"></div>
@@ -97,7 +97,7 @@ $row = mysqli_fetch_assoc($query);
 							<label class="control-label" style="position:relative; top:7px;">End Time:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="end_time"  value="">
+							<input type="text" class="form-control" name="end_time"  value="" placeholder="HH:MM:SS" required>
 						</div>
 					</div>
                 </div> 
@@ -252,35 +252,38 @@ $row = mysqli_fetch_assoc($query);
 	<!-- View -->
 	
     <div class="modal fade" id="view<?php echo $row2['employee_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+     
+	<div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <center><h4 class="modal-title" id="myModalLabel">Daily Time Record:</h4></center>
                 </div>
                 <div class="modal-body" style="width: 100%;">
-				
-				
 				<?php
 					$views="SELECT *
 					FROM attendance_tbl
 					INNER JOIN employee_tbl ON attendance_tbl.employee_id = employee_tbl.employee_id
 					WHERE employee_tbl.employee_id = '".$row2['employee_id']."'
 					ORDER BY attendance_id DESC";
-					$res = mysqli_query($connection, $views);				
-					?>
-
+					$res = mysqli_query($connection, $views);
+								
+					?>    
 				<div class="container-fluid">
+				
+				Employee: <?php echo $row2["fname"];?>  <?php echo $row2["lname"];?>
+					<br>
+					<br>
+					
 					<table class="table">
 					<thead>
 						<tr>
-						
 						<th>DATE</th>					
 						<th>TIME IN</th>
 						<th>TIME IN STATUS</th>
 						<th>TIME OUT</th>
 						<th>TIME OUT STATUS</th>
-						<th>STATUS</th>
+						<!--<th>STATUS</th>-->
 						</tr>
 					</thead>
 					<tbody>
@@ -288,14 +291,14 @@ $row = mysqli_fetch_assoc($query);
 				<?php
 				
 					while ($row = mysqli_fetch_assoc($res)) {?>
-						
+
 						<tr>
 					<td><?php echo $row["date"];?></td>
 					<td><?php echo $row["time_in"];?></td>
 					<td><?php echo $row["ti_status"];?></td>
 					<td><?php echo $row["time_out"];?></td>
 					<td><?php echo $row["to_status"];?></td>
-					<td><?php echo $row["statuses"];?></td>
+					<!--<td><?php //echo $row["statuses"];?></td>-->
 					
 					</tr>
 					<?php } 	

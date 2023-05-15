@@ -1,30 +1,23 @@
 <?php
 session_start();
 require_once('database.php');
-if (isset($_GET['employee_id'])) {
-    $id = $_GET['employee_id'];
-    if (isset($_SESSION['employee_id'])) {
-        
-        $employee_id = $_SESSION['employee_id'];
 
-        // query database for leave request based on employee ID
-        $sql = "SELECT employee_id FROM leave_tbl";
-        $query = mysqli_query($connection, $sql);
+if (isset($_GET['leave_id'])) {
+    $leave_id = $_GET['leave_id'];
 
-        // retrieve employee's id
-        $row = mysqli_fetch_assoc($query);
-        
+    // query database to check if the leave request exists
+    $sql = "SELECT leave_id FROM leave_tbl WHERE leave_id = '$leave_id'";
+    $query = mysqli_query($connection, $sql);
+
+    // check if leave request exists
+    if (mysqli_num_rows($query) > 0) {
         $status = "disapproved";
-
-        // check if e_id is not null before executing UPDATE query
-        if ($id !== null) {
-            mysqli_query($connection,"UPDATE leave_tbl SET le_status='$status' WHERE employee_id='$id'");
-            header('location:leave-admin.php');
-        } else {
-            echo "No leave request found for employee ID: $employee_id";
-        }
+        mysqli_query($connection, "UPDATE leave_tbl SET le_status = '$status' WHERE leave_id = '$leave_id'");
+        header('location: leave-admin.php');
     } else {
-        echo "Session variable 'employee_id' not set.";
+        echo "No leave request found for Leave ID: $leave_id";
     }
+} else {
+    echo "No Leave ID provided.";
 }
 ?>

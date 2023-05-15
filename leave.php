@@ -58,7 +58,7 @@ https://codepen.io/angeladelise/pen/YzXLdyq
   <div class="w3-third">
   <label>Hr</label>
   
-  <select id="hr" name="hr" style="width: 300px; height: 35px;">
+  <select id="hr" name="hr" required style="width: 300px; height: 35px;">
                         <option value="">HR</option>
                         <option value="rox">FERNANDO, ROXANNE L.</option>
                         <option value="jeb">JUMILLA, JEB C.</option>
@@ -77,15 +77,15 @@ https://codepen.io/angeladelise/pen/YzXLdyq
 <div class="w3-row-padding">
   <div class="w3-third">
   <label>Inclusive Date (From)</label>
-    <input class="w3-input w3-border" type="date" name="frdate" placeholder="">
+    <input class="w3-input w3-border" required type="date" name="frdate" placeholder="">
   </div>
   <div class="w3-third">
   <label>Inclusive Date (To) </label>
-    <input class="w3-input w3-border" type="date" name="todate" placeholder="">
+    <input class="w3-input w3-border" required type="date" name="todate" placeholder="">
   </div>
   <label>LEAVE TYPE</label>
   <div class="w3-third">
-  <select name="type" id="wgtmsr" style="width: 320px; height: 35px;">
+  <select name="type" id="wgtmsr" required style="width: 320px; height: 35px;">
   <option value="sick">Sick</option>
   <option value="injury">Injury</option>
   <option value="emerg">Home Emergencies</option>
@@ -97,7 +97,7 @@ https://codepen.io/angeladelise/pen/YzXLdyq
 </div>
 <br></br>
 
-<textarea name="reason" placeholder="Reason/Purpose of Leave"></textarea>
+<textarea name="reason" required placeholder="Reason/Purpose of Leave"></textarea>
 
 <br></br>
 

@@ -1,4 +1,4 @@
-<!-- Edit -->
+<!-- PAY -->
 <div class="modal fade" id="edit<?php echo $row2['employee_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -30,6 +30,7 @@
                         <select id="yearDropdown" name="year" class="form-control" style="width: 445px; height: 35px;">
                         <option value="">Year</option>
                         <script>
+                            
                         for (var i = 2023; i >= 1900; i--) {
                             document.write('<option value="' + i + '">' + i + '</option>');
                         }
@@ -129,3 +130,67 @@
             </div>
         </div>
     </div>
+    <!-- View -->
+    <div class="modal fade" id="view<?php echo $row2['employee_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     
+     <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                       <center><h4 class="modal-title" id="myModalLabel">PAYSLIP:</h4></center>
+                   </div>
+                   <div class="modal-body" style="width: 100%;">
+           <?php
+             $views="SELECT *
+             FROM payroll_tbl
+             INNER JOIN employee_tbl ON payroll_tbl.employee_id = employee_tbl.employee_id
+             WHERE payroll_tbl.employee_id = '".$row2['employee_id']."'
+             ORDER BY pay_id DESC";
+             $res = mysqli_query($connection, $views);
+                   
+             ?>    
+           <div class="container-fluid">
+           
+           Employee: <?php echo $row2["fname"];?>  <?php echo $row2["lname"];?>
+             <br>
+             <br>
+             
+             <table class="table">
+             <thead>
+               <tr>
+               <th>Month</th>					
+               <th>Earnings</th>
+               <th>Health Insurance</th>
+               <th>Tax</th>
+               
+               </tr>
+             </thead>
+             <tbody>
+           
+           <?php
+           
+             while ($row = mysqli_fetch_assoc($res)) {?>
+   
+               <tr>
+             <td><?php echo $row["month"];?></td>
+             <td><?php echo $row["earnings"];?></td>
+             <td><?php echo $row["health"];?></td>
+             <td><?php echo $row["tax"];?></td>
+          
+             
+             </tr>
+             <?php } 	
+             ?>
+           </tbody>
+           </table>
+           </div>			  		
+             
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> OK</button>
+                       
+                   </div>
+           
+             
+               
+           </div>
+       </div>

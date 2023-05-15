@@ -97,7 +97,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                     <th>Email</th>
                     <th>Start Time</th>
                     <th>End Time</th>
-                    <th> ACTION</th>  
+                    <th> qwe</th>  
                     
                 </tr>
             </thead>
@@ -116,6 +116,9 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                     <td><?php echo $row3["end_time"];?></td>
                     <td>
                     <a href="#edit<?php echo $row2['employee_id']; ?>" data-toggle="modal" class="btn btn-success"><span class="glyphicon glyphicon-bitcoin"></span> PAY</a> 
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
+                      <span class="glyphicon glyphicon-eye-open"></span> View
+                    </button>
             <?php include('admin-pay.php'); ?>
                     </td>
                 </tr>
@@ -177,6 +180,9 @@ else
           <td><?php echo $row2["end_time"];?></td>
           <td>
             <a href="#edit<?php echo $row2['employee_id']; ?>" data-toggle="modal" class="btn btn-success"><span class="glyphicon glyphicon-bitcoin"></span> PAY</a> 
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
+                      <span class="glyphicon glyphicon-eye-open"></span> View
+                    </button>
             <?php include('admin-pay.php'); ?>
             
           </td>

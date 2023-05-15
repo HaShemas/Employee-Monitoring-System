@@ -23,17 +23,7 @@ require_once("database.php");
 
     
 ?>
-<?php
 
-// If the user is not logged in, redirect to the login page
-
-// If the user clicked the logout button, destroy the session and redirect to the login page
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header("Location: login.php");
-  exit();
-}
-?>
 
 
 <!DOCTYPE html>
@@ -115,10 +105,19 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                     <td><?php echo $row3["start_time"];?></td>
                     <td><?php echo $row3["end_time"];?></td>
                     <td>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
-                      <span class="glyphicon glyphicon-eye-open"></span> View
-                    </button>
+                    <form method="POST" action="select.php">
+          <input type="hidden" name="employee_id"  value="<?php echo $row2["employee_id"]; ?>">
+          <input type="hidden" name="fname"  value="<?php echo $row2["fname"]; ?>">
+          <input type="hidden" name="lname"  value="<?php echo $row2["lname"]; ?>">
+          <button type="submit" class="btn btn-warning" name="bt">
+          <span class="glyphicon glyphicon-calendar"></span> Select
+        </button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
+          <span class="glyphicon glyphicon-eye-open"></span> View
+        </button>
+        </form>
                         <?php include('hr_action.php'); ?>
+                        
                     </td>
                 </tr>
                 <?php } ?>
@@ -147,6 +146,7 @@ else
   <table class="table table-bordered" border="1" style="width: 100%; table-layout: auto;">
     <thead>
       <tr>
+        
         <th>Employee ID</th>
         <th>Password</th>
         <th>First Name</th>
@@ -159,6 +159,7 @@ else
         <th>ACTION</th>
       </tr>
     </thead>
+    
     <tbody>
       <?php mysqli_data_seek($query2, 0); // reset query pointer ?>
       <?php while ($row2 = mysqli_fetch_assoc($query2)) { ?>
@@ -173,15 +174,24 @@ else
           <td><?php echo $row2["start_time"];?></td>
           <td><?php echo $row2["end_time"];?></td>
           <td>
+          <form method="POST" action="select.php">
+          <input type="hidden" name="employee_id"  value="<?php echo $row2["employee_id"]; ?>">
+          <input type="hidden" name="fname"  value="<?php echo $row2["fname"]; ?>">
+          <input type="hidden" name="lname"  value="<?php echo $row2["lname"]; ?>">
+          <button type="submit" class="btn btn-warning" name="bt">
+          <span class="glyphicon glyphicon-calendar"></span> Select
+        </button>
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row2['employee_id']; ?>">
           <span class="glyphicon glyphicon-eye-open"></span> View
         </button>
+        </form>
          <?php include('hr_action.php'); ?>
           </td>
         </tr>
       <?php } ?>
     </tbody>
   </table>
+  
   <?php include('hr_action.php'); 
   }
 

@@ -36,7 +36,7 @@ https://codepen.io/angeladelise/pen/YzXLdyq
 
   <nav></nav>
   <main style="width: 130%; height: auto;">
-  <form method="GET" action="approve.php">
+  <form method="GET" action="">
     <br></br>
     <br></br>
     LEAVE REQUESTS
@@ -60,6 +60,7 @@ https://codepen.io/angeladelise/pen/YzXLdyq
         <?php mysqli_data_seek($query, 0); // reset query pointer ?>
 <?php while ($row = mysqli_fetch_assoc($query)) { ?>
   <tr>
+  <td><?php echo $row["leave_id"];?></td>
     <td><?php echo $row["employee_id"];?></td>
     <td><?php echo $row["le_date"];?></td>
     <td><?php echo $row["fr_date"];?></td>
@@ -71,10 +72,10 @@ https://codepen.io/angeladelise/pen/YzXLdyq
       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#view<?php echo $row['employee_id']; ?>">
         <span class="glyphicon glyphicon-eye-open"></span> View
       </button>
-      <button type="reset" class="btn btn-warning" onclick="window.location.href='approve.php?employee_id=<?php echo $row['employee_id']; ?>'">
+      <button type="reset" class="btn btn-warning" onclick="window.location.href='approve.php?leave_id=<?php echo $row['leave_id']; ?>'">
         <span class="glyphicon glyphicon-ok"></span> Approve
       </button>
-      <button type="reset" class="btn btn-danger" onclick="window.location.href='disapprove.php?employee_id=<?php echo $row['employee_id']; ?>'">
+      <button type="reset" class="btn btn-danger" onclick="window.location.href='disapprove.php?leave_id=<?php echo $row['leave_id']; ?>'">
         <span class="glyphicon glyphicon-remove"></span> Disapprove
       </button>
       

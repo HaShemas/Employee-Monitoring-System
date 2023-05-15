@@ -22,11 +22,11 @@ if(isset($_POST['submit'])){
     
     if($rows1 > 0 || $rows2 > 0){
       if($rows2 > 0){
-        // Set the hr_id in the session
+        session_regenerate_id(true);
         $_SESSION['hr_id'] = $id;
         header("location: dashboard-admin.php");
       } else {
-        // Set the employee_id in the session
+        session_regenerate_id(true);
         $employee = mysqli_fetch_assoc($query);
         $_SESSION['employee_id'] = $employee['employee_id'];
         header("location: dashboard.php");
